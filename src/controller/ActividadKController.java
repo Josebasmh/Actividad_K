@@ -42,7 +42,10 @@ public class ActividadKController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		LocalDateTime hora= LocalDateTime.now();
 		TimerTask task = new TimerTask() {
-	        
+	        /**
+	         * Método que guarda la hora del sistema e implanta las imagenes correspondientes en el fxml.
+	         * Se refresca cada segundo.
+	         */
 			public void run() {
 	        	// Damos valores a las variables desde el inicio con la hora del sistema
 	        	int nHoras = new Date().getHours();
@@ -71,7 +74,7 @@ public class ActividadKController implements Initializable{
 	        			nSegundo=nSegundoNuevo;
 	        			calculaTiempo(nSegundo,imgSegundo1,imgSegundo2);
 	        		}	
-	        	}  
+	        	}
 	        }
 	    };
 	    Timer timer = new Timer("Timer");	    
@@ -79,6 +82,12 @@ public class ActividadKController implements Initializable{
 	    timer.schedule(task, delay);
 	}
 	
+	/**
+	 * Separa el tiempo en dos dígitos.
+	 * @param t tiempo
+	 * @param i1 primer espacio de imagen
+	 * @param i2 segundo espacio de imagen
+	 */
 	private void calculaTiempo(int t,ImageView i1, ImageView i2) {
 		int num1 = t%10;
 		int num2 = (t-num1)/10;
@@ -87,6 +96,11 @@ public class ActividadKController implements Initializable{
 		seleccionarImagen(num2,i1);
 	}
 
+	/**
+	 * Vincula la imagen del número con el espacio pasado como parámetro.  
+	 * @param n número
+	 * @param i espacio de imagen
+	 */
 	private void seleccionarImagen(int n,ImageView i) {
 		switch (n) {
 		case 1:
